@@ -1,0 +1,14 @@
+.landing-container {
+  text-align: center;
+  padding-top: 100px;
+}
+
+.btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: rgb(33, 96, 247);
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
