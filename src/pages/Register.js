@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "../styles/Register.css";   // ✅ correct relative path
+import React, { useState, useRef, useEffect } from "react";
+import "../styles/Register.css";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -16,12 +16,17 @@ const Register = () => {
   });
 
   const [faceRecognized, setFaceRecognized] = useState(false);
+  const [cameraActive, setCameraActive] = useState(false);
+  const videoRef = useRef(null);
+  const [stream, setStream] = useState(null);
 
+  // Handle form field changes
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -37,17 +42,38 @@ const Register = () => {
 
     console.log("Form Data Submitted:", formData);
     alert("Registration Successful!");
+    stopCamera(); // stop camera after submission
   };
 
-  const handleCameraClick = () => {
-    const recognized = window.confirm("Simulate face recognition success?");
-    setFaceRecognized(recognized);
-
-    if (recognized) {
-      alert("Face recognized successfully!");
-    } else {
-      alert("Face recognition failed. Try again.");
+  // Open camera
+  const handleCameraClick = async () => {
+    try {
+      const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+      setStream(mediaStream);
+      setCameraActive(true);
+      if (videoRef.current) {
+        videoRef.current.srcObject = mediaStream;
+      }
+      setFaceRecognized(false); 
+    } catch (err) {
+      alert("Cannot access camera: " + err.message);
     }
+  };
+
+  // Stop camera
+  const stopCamera = () => {
+    if (stream) {
+      stream.getTracks().forEach((track) => track.stop());
+      setCameraActive(false);
+      setStream(null);
+    }
+  };
+
+  // Simulate face recognition
+  const handleFaceRecognition = () => {
+    setFaceRecognized(true);
+    alert("Face recognized successfully!");
+    stopCamera();
   };
 
   return (
@@ -98,8 +124,6 @@ const Register = () => {
           <input id="position" value={formData.position} onChange={handleChange} required />
         </div>
 
-    
-
         <div className="button-group">
           <button type="submit" className="submit-btn" disabled={!faceRecognized}>
             Submit
@@ -110,8 +134,20 @@ const Register = () => {
           </button>
         </div>
 
-        {!faceRecognized && (
-          <p>Please complete face recognition before submitting.</p>
+        {!faceRecognized && <p>Please complete face recognition before submitting.</p>}
+
+        {cameraActive && (
+          <div className="camera-container">
+            <video ref={videoRef} autoPlay playsInline width="300" />
+            <div>
+              <button type="button" onClick={handleFaceRecognition}>
+                Capture / Recognize Face
+              </button>
+              <button type="button" onClick={stopCamera}>
+                Close Camera
+              </button>
+            </div>
+          </div>
         )}
       </form>
     </div>

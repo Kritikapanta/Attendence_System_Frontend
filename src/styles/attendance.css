@@ -1,6 +1,6 @@
 .attendance-page {
-  padding: 30px;
-  font-family: Arial, sans-serif;
+  padding: 100px;
+  font-family: 'Arial', sans-serif;
   text-align: center;
   background-color: #f0f2f5;
   min-height: 100vh;
@@ -9,41 +9,62 @@
 /* Main white box */
 .attendance-box {
   margin: 30px auto;
-  padding: 25px;
+  padding: 30px;
   background-color: #ffffff;
   max-width: 650px;
   border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-/* Camera / Attendance button */
+/* Camera / Attendance buttons */
 .camera-btn {
   padding: 12px 25px;
-  margin-bottom: 15px;
+  margin: 10px 5px;
   font-size: 16px;
+  font-weight: bold;
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .camera-btn:hover {
   background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Video container */
+.camera-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.camera-container video {
+  border-radius: 12px;
+  border: 2px solid #4CAF50;
+  max-width: 100%;
+  height: auto;
 }
 
 /* Scanning text */
 .attendance-box p {
-  margin: 10px 0;
+  margin: 15px 0;
   font-weight: bold;
   color: #555;
+  font-size: 16px;
 }
 
 /* Attendance table */
 .attendance-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .attendance-table th,
@@ -59,9 +80,21 @@
 }
 
 .attendance-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #f9f9f9;
 }
 
 .attendance-table tr:hover {
   background-color: #e9f5ec;
+}
+
+/* Responsive for smaller devices */
+@media (max-width: 500px) {
+  .attendance-box {
+    padding: 20px;
+  }
+
+  .camera-btn {
+    width: 100%;
+    margin: 8px 0;
+  }
 }
