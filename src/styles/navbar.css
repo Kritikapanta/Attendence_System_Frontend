@@ -1,13 +1,131 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
-  background-color: #222;
-  color: white;
+  align-items: center;
+  padding: 10px 30px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 15px rgba(147, 141, 141, 0.1);
+  height: 100px;
+  margin-top: 0px;
+  box-shadow: 0 6px 20px rgba(2, 76, 229, 0.4); /* Updated shadow color */
+  position: relative;
 }
 
-.nav-links a {
-  margin-left: 15px;
+/* Left section */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Make logo small */
+.nav-logo {
+  height: 100px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.nav-title {
+  font-size: 55px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Right section */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Home link */
+.nav-link {
+  text-decoration: none;
+  color: #140c80;
+  font-weight: 500;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #024ce5; /* Changed from #3C8D3E to match button color */
+}
+
+/* Login button - Updated to match landing page button color */
+.login-btn {
+  background-color: #024ce5; /* Changed from #3C8D3E to #024ce5 */
+  color: white;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(2, 76, 229, 0.3); /* Updated shadow color */
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.login-btn:hover {
+  background-color: #023bb3; /* Darker shade of blue for hover */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(2, 76, 229, 0.4); /* Updated shadow color */
   color: white;
   text-decoration: none;
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 20px;
+    height: 80px;
+    margin-top: 0px;
+  }
+  
+  .nav-logo {
+    height: 60px;
+  }
+  
+  .nav-right {
+    gap: 15px;
+  }
+  
+  .login-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  .nav-link {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px 15px;
+    height: 70px;
+    margin-top: 0px;
+  }
+  
+  .nav-logo {
+    height: 50px;
+  }
+  
+  .nav-right {
+    gap: 10px;
+  }
+  
+  .login-btn {
+    padding: 8px 15px;
+    font-size: 13px;
+  }
+  
+  .nav-link {
+    font-size: 13px;
+  }
 }

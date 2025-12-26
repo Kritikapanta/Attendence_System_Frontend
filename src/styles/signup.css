@@ -1,0 +1,328 @@
+/* Signup Page Styles */
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background-color: #fff;
+  padding: 20px;
+  padding-top: 100px;
+}
+
+.signup-form-container {
+  width: 80%;
+  max-width: 500px;
+  background-color: #e2ecfa;
+  border-radius: 5px;
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 1px solid #202a74;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.signup-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.signup-title {
+  font-size: 38px;
+  padding-left: 130px;
+  color: #140c80;
+  margin: 0;
+  font-family: 'Abhaya Libre', serif;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #3a4770;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #2E6F4B;
+}
+
+/* REMOVED THE BOX - Updated user-type-container */
+.user-type-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+  /* Removed: background-color, padding, border, border-radius */
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+}
+
+.radio-input {
+  display: none;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #000;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 600;
+}
+
+.radio-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #202a74;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.radio-input:checked + .radio-label .radio-circle {
+  background-color: #024ce5;
+  border-color: #024ce5;
+}
+
+.radio-input:checked + .radio-label .radio-circle::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.signup-label {
+  display: block;
+  color: #000;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 600;
+}
+
+.signup-input {
+  width: 100%;
+  border: 1px solid #3A703C;
+  border-radius: 1px;
+  padding: 12px;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  font-size: 20px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup-input:focus {
+  outline: none;
+  border-color: #2E6F4B;
+  box-shadow: 0 6px 20px rgba(46, 111, 75, 0.4);
+}
+
+.camera-section {
+  margin-bottom: 20px;
+}
+
+.camera-button {
+  background-color: #024ce5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.camera-button:hover {
+  background-color: #1f396e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.video-container {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto 15px;
+  border: 2px solid #202a74;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.camera-video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.camera-status {
+  color: #2E6F4B;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 16px;
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.signup-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.signup-button {
+  background-color: #024ce5;
+  color: white;
+  padding: 12px 40px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  width: 50%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  font-family: 'Abhaya Libre', serif;
+}
+
+.signup-button:hover {
+  background-color: #1f396e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.signup-button:active {
+  transform: translateY(0);
+}
+
+.signup-footer {
+  width: 80%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+}
+
+.signup-footer-text {
+  color: #000;
+  font-size: 24px;
+  text-align: center;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.signup-login-link {
+  color: #1B73FF;
+  font-size: 24px;
+  text-decoration: underline;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.signup-login-link:hover {
+  color: #024ce5;
+  text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signup-container {
+    padding-top: 80px;
+  }
+  
+  .signup-form-container {
+    width: 90%;
+    padding: 20px;
+  }
+  
+  .signup-title {
+    font-size: 32px;
+    padding-left: 100px;
+  }
+  
+  .signup-label {
+    font-size: 18px;
+  }
+  
+  .signup-input {
+    font-size: 16px;
+  }
+  
+  .radio-label {
+    font-size: 16px;
+  }
+  
+  .signup-footer-text {
+    font-size: 18px;
+  }
+  
+  .signup-login-link {
+    font-size: 18px;
+  }
+  
+  .signup-button {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-container {
+    padding-top: 60px;
+  }
+  
+  .signup-form-container {
+    width: 95%;
+    padding: 15px;
+  }
+  
+  .signup-title {
+    font-size: 28px;
+    padding-left: 60px;
+  }
+  
+  .user-type-container {
+    flex-direction:row;
+    gap: 10px;
+  }
+  
+  .signup-button {
+    width: 70%;
+    padding: 10px 30px;
+  }
+  
+  .signup-footer-text {
+    font-size: 18px;
+  }
+  
+  .signup-login-link {
+    font-size: 18px;
+  }
+  .error-message {
+  color: #d32f2f;
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-family: 'Abhaya Libre', serif;
+  font-size: 16px;
+  border: 1px solid #d32f2f;
+  text-align: center;
+}
+}

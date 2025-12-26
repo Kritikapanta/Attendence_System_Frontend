@@ -1,17 +1,40 @@
-import React from "react";
-import "./../styles/landing.css";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/landing.css';
 
-function LandingPage() {
+const LandingPage = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="landing-container">
-      <h1>Welcome to the Smart Attendance System</h1>
-      <p>Face recognition based automatic attendance recording.</p>
+      <div className="landing-content">
+        {/* Center Image */}
+        <div className="image-container">
+          <img 
+            src={require('../assets/center_pic.png')} 
+            alt="Attendance System" 
+            className="center-image"
+          />
+        </div>
 
-      <a href="/login">
-        <button className="btn">Get Started</button>
-      </a>
+        {/* Quote */}
+        <div className="quote-container">
+          <p className="quote-text">Your time matters. Make today count.</p>
+        </div>
+
+        {/* Get Started Button */}
+        <div className="button-container">
+          <button className="get-started-btn" onClick={handleGetStarted}>
+            Get Started
+          </button>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default LandingPage;
