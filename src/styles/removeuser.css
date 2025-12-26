@@ -1,187 +1,53 @@
-/* Remove User Page Styles */
-.removeuser-container {
+.remove-container {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.remove-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.input-group {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-  background-color: #fff;
-  padding: 20px;
-  padding-top: 100px;
-}
-
-.removeuser-form-container {
-  width: 80%;
-  max-width: 500px;
-  background-color: #e2ecfa;
-  border-radius: 5px;
-  padding: 30px;
-  border: 1px solid #202a74;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.removeuser-form-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 20px;
 }
 
-.removeuser-title {
-  font-size: 32px;
-  color: #140c80;
-  margin: 0;
-  font-family: 'Abhaya Libre', serif;
-}
-
-.close-button {
-  background: none;
-  border: none;
-  font-size: 32px;
-  color: #3a4770;
-  cursor: pointer;
-  padding: 8px;
-  line-height: 1;
-  transition: color 0.3s ease;
-}
-
-.close-button:hover {
-  color: #2E6F4B;
-}
-
-.removeuser-label {
-  display: block;
-  color: #000;
-  margin-bottom: 10px;
-  font-size: 20px;
-  font-family: 'Abhaya Libre', serif;
-  font-weight: 600;
-}
-
-.removeuser-select {
-  width: 100%;
-  border: 1px solid #3A703C;
-  border-radius: 1px;
-  padding: 12px;
-  margin-bottom: 20px;
-  background-color: white;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  font-size: 18px;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  font-family: 'Abhaya Libre', serif;
-}
-
-.removeuser-select:focus {
-  outline: none;
-  border-color: #2E6F4B;
-  box-shadow: 0 6px 20px rgba(46, 111, 75, 0.4);
-}
-
-.user-details {
-  background-color: white;
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.user-details h3 {
-  margin-top: 0;
-  color: #140c80;
-  font-family: 'Abhaya Libre', serif;
-  margin-bottom: 10px;
-}
-
-.user-details p {
-  margin: 8px 0;
-  font-family: 'Abhaya Libre', serif;
-  font-size: 16px;
-}
-
-.removeuser-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.removeuser-button {
-  background-color: #dc3545;
-  color: white;
-  padding: 12px 40px;
-  border: 1px solid #000;
-  border-radius: 5px;
+.input-group label {
+  margin-bottom: 6px;
   font-weight: bold;
-  font-size: 20px;
+}
+
+.input-group input,
+.input-group textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.input-group textarea {
+  resize: none;
+  height: 80px;
+}
+
+.remove-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
   cursor: pointer;
-  width: 50%;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  font-family: 'Abhaya Libre', serif;
 }
 
-.removeuser-button:hover:not(:disabled) {
-  background-color: #a71d2a;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-.removeuser-button:disabled {
-  background-color: #6c757d;
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-
-.removeuser-button:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.error-message {
-  color: #d32f2f;
-  background-color: #ffebee;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  font-family: 'Abhaya Libre', serif;
-  font-size: 16px;
-  border: 1px solid #d32f2f;
-  text-align: center;
-}
-
-.success-message {
-  color: #2E6F4B;
-  background-color: #d4edda;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  font-family: 'Abhaya Libre', serif;
-  font-size: 16px;
-  border: 1px solid #c3e6cb;
-  text-align: center;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .removeuser-form-container {
-    width: 90%;
-    padding: 20px;
-  }
-  
-  .removeuser-title {
-    font-size: 26px;
-  }
-  
-  .removeuser-label {
-    font-size: 18px;
-  }
-  
-  .removeuser-select {
-    font-size: 16px;
-  }
-  
-  .removeuser-button {
-    font-size: 18px;
-    width: 70%;
-  }
+.remove-btn:hover {
+  background-color: #c9302c;
 }

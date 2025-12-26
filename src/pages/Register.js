@@ -1,180 +1,119 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { database } from '../config/firebase';
-import { ref, set } from 'firebase/database';
-import '../styles/register.css';
+import React, { useState } from "react";
+import "../styles/Register.css";   // ✅ correct relative path
 
 const Register = () => {
-  const navigate = useNavigate();
-  const { currentUser } = useAuth();
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('employee');
-  const [jobRole, setJobRole] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    dob: "",
+    phone: "",
+    email: "",
+    position: "",
+    responsibilities: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email.toLowerCase());
+  const [faceRecognized, setFaceRecognized] = useState(false);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
   };
 
-  const handleRegister = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!fullName.trim()) {
-      return setError('Please enter full name.');
+    if (!faceRecognized) {
+      alert("Please complete face recognition before submitting!");
+      return;
     }
 
-    if (!validateEmail(email)) {
-      return setError('Please enter a valid email address.');
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
     }
 
-    if (password.length < 8) {
-      return setError('Password must be at least 8 characters.');
+    console.log("Form Data Submitted:", formData);
+    alert("Registration Successful!");
+  };
+
+  const handleCameraClick = () => {
+    const recognized = window.confirm("Simulate face recognition success?");
+    setFaceRecognized(recognized);
+
+    if (recognized) {
+      alert("Face recognized successfully!");
+    } else {
+      alert("Face recognition failed. Try again.");
     }
-
-    if (userType === 'employee' && !jobRole.trim()) {
-      return setError('Please enter job role for employee.');
-    }
-
-    try {
-      setError('');
-      setLoading(true);
-
-      // In a real app, you would create the user using Firebase Admin SDK on backend
-      // For frontend demo, we'll just save to database
-      const userId = Date.now().toString(); // Temporary ID
-      
-      await set(ref(database, 'users/' + userId), {
-        id: userId,
-        fullName,
-        email,
-        userType,
-        jobRole: userType === 'employee' ? jobRole : 'Administrator',
-        createdBy: currentUser?.email || 'admin',
-        createdAt: new Date().toISOString(),
-        password: password // ⚠️ In real app, NEVER store plain passwords!
-      });
-
-      alert('User registered successfully!');
-      navigate('/administrator');
-    } catch (error) {
-      setError('Registration failed: ' + error.message);
-    }
-    setLoading(false);
   };
 
   return (
-    <div className="register-container">
-      <div className="register-form-container">
-        <div className="register-form-header">
-          <h1 className="register-title">Register New User</h1>
-          <button 
-            className="close-button"
-            onClick={() => navigate('/administrator')}
-            type="button"
-          >
-            ×
+    <div className="signup-container">
+      <h1>Register</h1>
+
+      <form onSubmit={handleSubmit}>
+        <h3>Employee Details</h3>
+
+        <div className="name-flex">
+          <div className="input-group">
+            <label htmlFor="firstName">First Name</label>
+            <input id="firstName" value={formData.firstName} onChange={handleChange} required />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="middleName">Middle Name</label>
+            <input id="middleName" value={formData.middleName} onChange={handleChange} />
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="lastName">Last Name</label>
+            <input id="lastName" value={formData.lastName} onChange={handleChange} required />
+          </div>
+        </div>
+
+        <div className="input-group">
+          <label htmlFor="dob">Date of Birth</label>
+          <input type="date" id="dob" value={formData.dob} onChange={handleChange} required />
+        </div>
+
+        <h3>Contact</h3>
+
+        <div className="input-group">
+          <label htmlFor="phone">Phone Number</label>
+          <input id="phone" value={formData.phone} onChange={handleChange} required />
+        </div>
+
+        <div className="input-group">
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" value={formData.email} onChange={handleChange} required />
+        </div>
+
+        <h3>Position & Responsibilities</h3>
+
+        <div className="input-group">
+          <label htmlFor="position">Position</label>
+          <input id="position" value={formData.position} onChange={handleChange} required />
+        </div>
+
+    
+
+        <div className="button-group">
+          <button type="submit" className="submit-btn" disabled={!faceRecognized}>
+            Submit
+          </button>
+
+          <button type="button" className="camera-btn" onClick={handleCameraClick}>
+            Open Camera
           </button>
         </div>
 
-        {error && <div className="error-message">{error}</div>}
-
-        <form onSubmit={handleRegister}>
-          <div className="user-type-container">
-            <div className="radio-option">
-              <input
-                type="radio"
-                id="admin-reg"
-                name="userType"
-                checked={userType === 'admin'}
-                onChange={() => setUserType('admin')}
-                className="radio-input"
-              />
-              <label htmlFor="admin-reg" className="radio-label">
-                <span className="radio-circle"></span>
-                Administrator
-              </label>
-            </div>
-            
-            <div className="radio-option">
-              <input
-                type="radio"
-                id="employee-reg"
-                name="userType"
-                checked={userType === 'employee'}
-                onChange={() => setUserType('employee')}
-                className="radio-input"
-              />
-              <label htmlFor="employee-reg" className="radio-label">
-                <span className="radio-circle"></span>
-                Employee
-              </label>
-            </div>
-          </div>
-
-          <label className="register-label">
-            Full Name:
-          </label>
-          <input
-            type="text"
-            className="register-input"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            required
-          />
-
-          <label className="register-label">
-            Email:
-          </label>
-          <input
-            type="email"
-            className="register-input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          {userType === 'employee' && (
-            <>
-              <label className="register-label">
-                Job Role:
-              </label>
-              <input
-                type="text"
-                className="register-input"
-                value={jobRole}
-                onChange={(e) => setJobRole(e.target.value)}
-                required
-              />
-            </>
-          )}
-
-          <label className="register-label">
-            Password:
-          </label>
-          <input
-            type="password"
-            className="register-input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          <div className="register-button-container">
-            <button 
-              type="submit" 
-              className="register-button"
-              disabled={loading}
-            >
-              {loading ? 'Registering...' : 'Register User'}
-            </button>
-          </div>
-        </form>
-      </div>
+        {!faceRecognized && (
+          <p>Please complete face recognition before submitting.</p>
+        )}
+      </form>
     </div>
   );
 };

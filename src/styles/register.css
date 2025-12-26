@@ -1,196 +1,108 @@
-/* Register Page Styles */
-.register-container {
+/* GLOBAL FIX */
+* {
+  box-sizing: border-box;
+}
+
+/* Main container */
+.signup-container {
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+  text-align: left;
+}
+
+/* Headings */
+.signup-container h1 {
+  text-align: center;
+  color: #6f57ab;
+}
+
+.signup-container h3 {
+  margin-top: 20px;
+  color: #888ee5;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+/* Input groups */
+.input-group {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-  background-color: #fff;
-  padding: 20px;
-  padding-top: 100px;
+  margin-bottom: 15px;
 }
 
-.register-form-container {
-  width: 80%;
-  max-width: 500px;
-  background-color: #e2ecfa;
-  border-radius: 5px;
-  padding: 30px;
-  border: 1px solid #202a74;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+/* Labels */
+.input-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.register-form-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.register-title {
-  font-size: 32px;
-  color: #140c80;
-  margin: 0;
-  font-family: 'Abhaya Libre', serif;
-}
-
-.close-button {
-  background: none;
-  border: none;
-  font-size: 32px;
-  color: #3a4770;
-  cursor: pointer;
-  padding: 8px;
-  line-height: 1;
-  transition: color 0.3s ease;
-}
-
-.close-button:hover {
-  color: #2E6F4B;
-}
-
-.user-type-container {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 25px;
-}
-
-.radio-option {
-  display: flex;
-  align-items: center;
-}
-
-.radio-input {
-  display: none;
-}
-
-.radio-label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-size: 18px;
-  color: #000;
-  font-family: 'Abhaya Libre', serif;
-  font-weight: 600;
-}
-
-.radio-circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid #202a74;
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.radio-input:checked + .radio-label .radio-circle {
-  background-color: #024ce5;
-  border-color: #024ce5;
-}
-
-.radio-input:checked + .radio-label .radio-circle::after {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: white;
-}
-
-.register-label {
-  display: block;
-  color: #000;
-  margin-bottom: 10px;
-  font-size: 20px;
-  font-family: 'Abhaya Libre', serif;
-  font-weight: 600;
-}
-
-.register-input {
+/* Inputs & textarea */
+.signup-container input,
+.signup-container textarea {
   width: 100%;
-  border: 1px solid #3A703C;
-  border-radius: 1px;
-  padding: 12px;
-  margin-bottom: 20px;
-  background-color: white;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  font-size: 20px;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.register-input:focus {
-  outline: none;
-  border-color: #2E6F4B;
-  box-shadow: 0 6px 20px rgba(46, 111, 75, 0.4);
+/* Name row (First, Middle, Last) */
+.name-flex {
+  display: flex;
+  gap: 10px;
 }
 
-.register-button-container {
+.name-flex .input-group {
+  flex: 1;
+}
+
+/* Buttons container */
+.button-group {
   display: flex;
   justify-content: center;
+  gap: 15px;
   margin-top: 20px;
 }
 
-.register-button {
-  background-color: #024ce5;
+/* Buttons */
+.submit-btn {
+  background-color: #007bff;
   color: white;
-  padding: 12px 40px;
-  border: 1px solid #000;
+  padding: 10px 25px;
+  border: none;
   border-radius: 5px;
-  font-weight: bold;
-  font-size: 20px;
   cursor: pointer;
-  width: 50%;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  font-family: 'Abhaya Libre', serif;
 }
 
-.register-button:hover {
-  background-color: #1f396e;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-.register-button:active {
-  transform: translateY(0);
-}
-
-.error-message {
-  color: #d32f2f;
-  background-color: #ffebee;
-  padding: 10px;
+.camera-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 25px;
+  border: none;
   border-radius: 5px;
-  margin-bottom: 20px;
-  font-family: 'Abhaya Libre', serif;
-  font-size: 16px;
-  border: 1px solid #d32f2f;
-  text-align: center;
+  cursor: pointer;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .register-form-container {
-    width: 90%;
-    padding: 20px;
-  }
-  
-  .register-title {
-    font-size: 26px;
-  }
-  
-  .register-label {
-    font-size: 18px;
-  }
-  
-  .register-input {
-    font-size: 16px;
-  }
-  
-  .register-button {
-    font-size: 18px;
-    width: 70%;
+/* Disabled submit */
+.submit-btn:disabled {
+  background-color: #a0c4ff;
+  cursor: not-allowed;
+}
+
+/* Warning text */
+.signup-container p {
+  text-align: center;
+  font-size: 13px;
+  color: red;
+}
+
+/* Responsive fix */
+@media (max-width: 520px) {
+  .name-flex {
+    flex-direction: column;
   }
 }

@@ -1,37 +1,30 @@
-import React from 'react';
-import { useAuth } from '../context/AuthContext';
-import '../styles/attendance.css';
+import React, { useState } from "react";
+import "../styles/Attendance.css"; 
+function Attendance() { 
+  const [message, setMessage] = useState("");
 
-const Attendance = () => {
-  const { currentUser, userData } = useAuth();
+  const markAttendance = async () => {
+    setMessage("📷 Scanning face...");
+
+    // Simulated API call
+    setTimeout(() => {
+      setMessage("✅ Attendance marked successfully");
+    }, 2000);
+  };
 
   return (
-    <div className="attendance-container">
-      <h1 className="attendance-title">Attendance Dashboard</h1>
-      
-      <div className="welcome-section">
-        <h2>Welcome, {userData?.fullName || currentUser?.email || 'User'}!</h2>
-        <p className="user-role">
-          Role: {userData?.userType === 'admin' ? 'Administrator' : 'Employee'}
-          {userData?.jobRole && ` (${userData.jobRole})`}
-        </p>
-      </div>
-      
-      <div className="attendance-info">
-        <p>This page will later show face recognition attendance.</p>
-        <div className="placeholder-box">
-          <h3>Attendance Features Coming Soon:</h3>
-          <ul>
-            <li>✅ Face Recognition Login</li>
-            <li>✅ Check-in / Check-out</li>
-            <li>✅ Attendance History</li>
-            <li>✅ Monthly Reports</li>
-            <li>✅ Real-time Tracking</li>
-          </ul>
-        </div>
+    <div className="attendance-page">
+      <h2>Face Recognition Attendance</h2>
+
+      <div className="attendance-box">
+        <button className="camera-btn" onClick={markAttendance}>
+          Mark Attendance
+        </button>
+
+        <p>{message}</p>
       </div>
     </div>
   );
-};
+}
 
-export default Attendance;
+export default Attendance; 
