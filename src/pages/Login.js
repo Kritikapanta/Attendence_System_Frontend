@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { database } from '../config/firebase';
+import { ref, get } from 'firebase/database';
 import '../styles/login.css';
 
 const Login = () => {
@@ -11,15 +13,69 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Function to find user by email in database
+  const findUserByEmail = async (email) => {
+    try {
+      const usersRef = ref(database, 'users');
+      const snapshot = await get(usersRef);
+      console.log('Database snapshot:', snapshot.exists()); // Debug log
+      
+      if (snapshot.exists()) {
+        const users = snapshot.val();
+        console.log('All users in database:', users); // Debug log
+        
+        // Find user with matching email
+        for (const userId in users) {
+          console.log('Checking user:', users[userId].email, 'against:', email); // Debug
+          if (users[userId].email === email) {
+            console.log('User found! Type:', users[userId].userType); // Debug
+            return users[userId];
+          }
+        }
+      }
+      console.log('No user found with email:', email); // Debug
+      return null;
+    } catch (error) {
+      console.error('Error finding user:', error);
+      return null;
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     
     try {
       setError('');
       setLoading(true);
+      
+      console.log('Attempting login with:', email); // Debug
+      
+      // 1. Login with Firebase Authentication
       await login(email, password);
-      navigate('/attendance');
+      console.log('Firebase login successful'); // Debug
+      
+      // 2. Find user in database to get userType
+      const userData = await findUserByEmail(email);
+      console.log('User data found:', userData); // Debug
+      
+      // 3. Redirect based on userType
+      if (userData) {
+        console.log('User type:', userData.userType); // Debug
+        if (userData.userType === 'admin') {
+          console.log('Redirecting to /administrator'); // Debug
+          navigate('/administrator');
+        } else {
+          console.log('Redirecting to /attendance'); // Debug
+          navigate('/attendance');
+        }
+      } else {
+        console.log('No user data found, redirecting to attendance'); // Debug
+        // If user data not found, redirect to attendance as default
+        navigate('/attendance');
+      }
+      
     } catch (error) {
+      console.error('Login error:', error); // Debug
       setError('Failed to log in: ' + error.message);
       alert('Login Failed: ' + error.message);
     }

@@ -1,0 +1,136 @@
+/* Attendance Page Styles */
+.attendance-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #fff;
+  padding: 40px 20px;
+  padding-top: 120px;
+}
+
+.attendance-title {
+  font-size: 42px;
+  color: #140c80;
+  margin-bottom: 40px;
+  font-family: 'Abhaya Libre', serif;
+  text-align: center;
+  font-weight: 600;
+}
+
+.welcome-section {
+  background-color: #e2ecfa;
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 800px;
+  border: 2px solid #202a74;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.welcome-section h2 {
+  font-size: 28px;
+  color: #140c80;
+  margin: 0 0 15px 0;
+  font-family: 'Abhaya Libre', serif;
+}
+
+.user-role {
+  font-size: 20px;
+  color: #333;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 600;
+}
+
+.attendance-info {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 30px;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+}
+
+.attendance-info p {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 30px;
+  font-family: 'Abhaya Libre', serif;
+}
+
+.placeholder-box {
+  background-color: white;
+  border-radius: 8px;
+  padding: 25px;
+  border: 2px dashed #024ce5;
+}
+
+.placeholder-box h3 {
+  font-size: 24px;
+  color: #024ce5;
+  margin: 0 0 20px 0;
+  font-family: 'Abhaya Libre', serif;
+}
+
+.placeholder-box ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.placeholder-box li {
+  font-size: 18px;
+  color: #333;
+  padding: 10px 0;
+  font-family: 'Abhaya Libre', serif;
+  text-align: left;
+  padding-left: 30px;
+  position: relative;
+}
+
+.placeholder-box li:before {
+  content: "✓";
+  color: #2E6F4B;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .attendance-container {
+    padding-top: 100px;
+    padding: 30px 15px;
+  }
+  
+  .attendance-title {
+    font-size: 32px;
+  }
+  
+  .welcome-section {
+    padding: 20px;
+  }
+  
+  .welcome-section h2 {
+    font-size: 24px;
+  }
+  
+  .user-role {
+    font-size: 18px;
+  }
+  
+  .attendance-info p {
+    font-size: 18px;
+  }
+  
+  .placeholder-box h3 {
+    font-size: 20px;
+  }
+  
+  .placeholder-box li {
+    font-size: 16px;
+  }
+}

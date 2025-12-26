@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { auth } from '../config/firebase';
+import { database } from '../config/firebase';
+import { ref, get } from 'firebase/database';
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
@@ -15,6 +17,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   function signup(email, password) {
@@ -29,9 +32,27 @@ export function AuthProvider({ children }) {
     return signOut(auth);
   }
 
+  // Fetch user data from database
+  const fetchUserData = async (userId) => {
+    try {
+      const userRef = ref(database, 'users/' + userId);
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) {
+        setUserData(snapshot.val());
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
+      if (user) {
+        await fetchUserData(user.uid);
+      } else {
+        setUserData(null);
+      }
       setLoading(false);
     });
 
@@ -40,9 +61,11 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
+    userData,
     signup,
     login,
-    logout
+    logout,
+    fetchUserData
   };
 
   return (
