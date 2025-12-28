@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "../styles/Removeuser.css";
+import "../styles/removeuser.css";
+import removeIcon from "../assets/remove.gif";
 
 const Removeuser = () => {
   const [userData, setUserData] = useState({
@@ -29,7 +30,6 @@ const Removeuser = () => {
     console.log("User Removed:", userData);
     alert("User removed successfully!");
 
-    // reset form
     setUserData({
       email: "",
       reason: "",
@@ -38,6 +38,10 @@ const Removeuser = () => {
 
   return (
     <div className="remove-container">
+      
+      {/* Remove Icon */}
+      <img src={removeIcon} alt="Remove User" className="remove-icon" />
+
       <h1>Remove User</h1>
 
       <form onSubmit={handleRemove}>

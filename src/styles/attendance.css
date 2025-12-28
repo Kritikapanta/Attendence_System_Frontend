@@ -1,42 +1,83 @@
+/* Page animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .attendance-page {
-  padding: 100px;
+  padding: clamp(20px, 6vw, 80px); 
   font-family: 'Arial', sans-serif;
   text-align: center;
-  background-color: #f0f2f5;
+  background: linear-gradient(135deg, #eef2f3, #d9e4ec);
   min-height: 100vh;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Floating Face ID image */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.face-id-image {
+  width: clamp(70px, 15vw, 120px); 
+  margin: 15px auto;
+  display: block;
+  opacity: 0.95;
+  animation: float 3s ease-in-out infinite;
 }
 
 /* Main white box */
 .attendance-box {
-  margin: 30px auto;
-  padding: 30px;
+  margin: 25px auto;
+  padding: clamp(18px, 4vw, 30px);
   background-color: #ffffff;
+  width: 100%;
   max-width: 650px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.attendance-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
 /* Camera / Attendance buttons */
 .camera-btn {
   padding: 12px 25px;
   margin: 10px 5px;
-  font-size: 16px;
+  font-size: clamp(14px, 2.5vw, 16px);
   font-weight: bold;
-  background-color: #4CAF50;
+  background: linear-gradient(135deg, #4CAF50, #43a047);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 260px; 
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  animation: pulse 2.5s infinite;
 }
 
 .camera-btn:hover {
-  background-color: #45a049;
   transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
 }
 
-/* Video container */
+.camera-btn:active {
+  transform: scale(0.95);
+}
+
+/* Camera container */
 .camera-container {
   display: flex;
   flex-direction: column;
@@ -45,22 +86,26 @@
   margin-top: 15px;
 }
 
+/* Video */
 .camera-container video {
-  border-radius: 12px;
-  border: 2px solid #4CAF50;
-  max-width: 100%;
+  width: 100%;
+  max-width: 320px; 
+  border-radius: 14px;
+  border: 3px solid #4CAF50;
   height: auto;
+  animation: glow 2s infinite;
 }
 
-/* Scanning text */
+/* Status message */
 .attendance-box p {
   margin: 15px 0;
   font-weight: bold;
   color: #555;
-  font-size: 16px;
+  font-size: clamp(14px, 2.5vw, 16px);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Attendance table */
+/* Attendance table (future use) */
 .attendance-table {
   width: 100%;
   border-collapse: collapse;
@@ -87,14 +132,13 @@
   background-color: #e9f5ec;
 }
 
-/* Responsive for smaller devices */
+
 @media (max-width: 500px) {
-  .attendance-box {
-    padding: 20px;
+  .camera-btn {
+    animation: none; /* cleaner on mobile */
   }
 
-  .camera-btn {
-    width: 100%;
-    margin: 8px 0;
+  .attendance-box:hover {
+    transform: none; /* avoids jumpy feel */
   }
 }

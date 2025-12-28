@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
-import "../styles/Attendance.css"; 
+import "../styles/attendance.css";
+import faceId from "../assets/face-id.png";   // ✅ image import
 
-function Attendance() { 
+function Attendance() {
   const [message, setMessage] = useState("");
   const [cameraActive, setCameraActive] = useState(false);
   const [stream, setStream] = useState(null);
@@ -16,8 +17,8 @@ function Attendance() {
 
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
-        videoRef.current.muted = true; 
-        await videoRef.current.play(); 
+        videoRef.current.muted = true;
+        await videoRef.current.play();
       }
 
       setMessage("📷 Camera opened. Ready to mark attendance.");
@@ -38,7 +39,7 @@ function Attendance() {
     }
   };
 
-  // Mark attendance (simulate face recognition)
+  // Mark attendance (simulation)
   const markAttendance = () => {
     if (!cameraActive) {
       alert("Please open the camera first!");
@@ -46,7 +47,7 @@ function Attendance() {
     }
 
     setMessage("📷 Scanning face...");
-    
+
     setTimeout(() => {
       setMessage("✅ Attendance marked successfully");
       stopCamera();
@@ -56,6 +57,9 @@ function Attendance() {
   return (
     <div className="attendance-page">
       <h2>Face Recognition Attendance</h2>
+
+      {/* Face ID Image */}
+      <img src={faceId} alt="Face ID" className="face-id-image" />
 
       <div className="attendance-box">
         {!cameraActive && (
